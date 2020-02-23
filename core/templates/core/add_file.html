@@ -16,13 +16,7 @@
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand">{{room.chatroom_id}}</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
             ><!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-                        <a href="/add_file/{{room.id}}"><button class="btn btn-primary" type="button">Add New File</button></a>
-                </div>
-            </form>
             <!-- Navbar-->
-            <a href="/delete_room/{{room.id}}"><button class="btn btn-danger" type="button">Delete Room</button></a>
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -30,20 +24,31 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Files</div>
-                            {%for file in files%}
                             <a class="nav-link collapsed" href="" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                {{file.book_name}}
+                                Filename
                             </a>
-                            {%endfor%}
                         </div>
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid">
-                        <h1 class="mt-4">Filespace</h1>
+                    <div class="h-100 row align-items-center ml-5 mr-5 mt-5">
+                        <div class="col ml-5 mr-5">
+                            <h1 class="text-success text-center mb-5 font-weight-light">Provide File Name</h1>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name='room_id' value="{{room.id}}">
+                                <input type="text" title="entryCode" name="filename" required class="form-control form-control-lg font-weight-light" placeholder="File Name ( Note: No Space )">
+                                <br>
+                                <div class="text-center">
+                                    <br>
+                                    <button type="submit" class="btn btn-info">Create file</button>
+                                </div>
+                            </form>
+                            <br>
+                    </div>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">

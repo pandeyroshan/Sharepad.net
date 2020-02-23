@@ -4,10 +4,10 @@ from django.db import models
 
 
 class ChatRoom(models.Model):
-    ip_address = models.GenericIPAddressField()
+    ip_address = models.GenericIPAddressField(null=False)
     chatroom_id = models.CharField(max_length=200)
-    users = models.IntegerField()
-    max_limit = models.IntegerField()
+    users = models.IntegerField(default=1)
+    max_limit = models.IntegerField(default=3)
 
     def __str__(self):
         return self.chatroom_id
@@ -18,7 +18,7 @@ class ChatRoom(models.Model):
 
 class TextBook(models.Model):
     chatroom = models.ForeignKey(ChatRoom,on_delete=models.CASCADE)
-    book_name = models.CharField(max_length=200)
+    book_name = models.CharField(max_length=200,blank=True)
     content = models.TextField()
 
     def __str__(self):
