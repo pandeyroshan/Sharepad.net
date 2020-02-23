@@ -1,4 +1,4 @@
-# Etherpad
+# Sharepad.net
 I'm trying to clone [etherpad](https://etherpad.net/), as it has shutdown few months back.
 
 ## Installation
